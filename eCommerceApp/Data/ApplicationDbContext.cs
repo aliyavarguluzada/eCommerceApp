@@ -14,6 +14,7 @@ public partial class ApplicationDbContext : DbContext
         : base(options)
     {
     }
+    public virtual DbSet<Slider> Sliders { get; set; }
 
     public virtual DbSet<Avenue> Avenues { get; set; }
 
@@ -49,6 +50,22 @@ public partial class ApplicationDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        modelBuilder.Entity<Slider>(entity =>
+        {
+            entity.Property(x => x.Title).IsRequired();
+
+            entity.Property(x => x.Slogan).IsRequired();
+            
+            entity.Property(x => x.CategoryId).IsRequired();
+            
+            entity.Property(x => x.BackgroundImage).IsRequired();
+
+                
+
+        });
+
+
+
         modelBuilder.Entity<Avenue>(entity =>
         {
             entity.HasKey(e => e.Id).HasName("PK_AVENUES");
