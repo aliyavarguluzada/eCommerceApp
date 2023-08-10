@@ -13,7 +13,9 @@ namespace eCommerceApp.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var sliders = await _context.Sliders.ToListAsync();
+            var sliders = await _context
+                .Sliders
+                .ToListAsync();
             return View(sliders);
         }
     }
