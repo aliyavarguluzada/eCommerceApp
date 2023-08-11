@@ -14,6 +14,7 @@ public partial class ApplicationDbContext : DbContext
         : base(options)
     {
     }
+    public virtual DbSet<BannerAd> BannerAds { get; set; }
     public virtual DbSet<Slider> Sliders { get; set; }
 
     public virtual DbSet<Avenue> Avenues { get; set; }
