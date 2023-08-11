@@ -1,4 +1,5 @@
-﻿using eCommerceApp.DTOs.Sliders;
+﻿using eCommerceApp.DTOs.BannerAds;
+using eCommerceApp.DTOs.Sliders;
 using eCommerceApp.Enums;
 using eCommerceApp.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -31,6 +32,15 @@ namespace eCommerceApp.Controllers
                     CategoryId = c.CategoryId,
                 })
                 .ToListAsync();
+
+            var bannerAds = await _context.BannerAds.Select(c => new BannerHomeIndexDto
+            {
+                BannerId = c.Id,
+                CategoryId = c.CategoryId,
+                Image = _configuration["Files:BannerAds"] + c.Image
+            }).ToList();
+
+
             return View(sliders);
         }
     }

@@ -19,4 +19,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModels\" />
+    <Folder Include="wwwroot\uploads\bannerAds\" />
+  </ItemGroup>
+
 </Project>
