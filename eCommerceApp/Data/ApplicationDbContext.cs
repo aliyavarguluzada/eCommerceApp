@@ -59,6 +59,7 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(x => x.CategoryId).IsRequired();
             
             entity.Property(x => x.BackgroundImage).IsRequired();
+            entity.Property(x => x.SliderStatusId).HasDefaultValue(10);
 
                 
 
