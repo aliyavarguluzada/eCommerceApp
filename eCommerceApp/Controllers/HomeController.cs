@@ -41,6 +41,7 @@ namespace eCommerceApp.Controllers
             var bannerAds = await _context
                 .BannerAds
                 .Where(c => c.BannerStatusId == (int)BannerStatus.Active)
+                .OrderByDescending(c => c.Id)
                 .Select(c => new BannerHomeIndexDto
             {
                 BannerId = c.Id,
