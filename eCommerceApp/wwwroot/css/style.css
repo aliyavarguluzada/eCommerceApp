@@ -1604,7 +1604,7 @@ img.secondary-img {
 }
 .subscribe-form {
   position: relative;
-  z-index: 99; }
+  z-index: 0; }
 
 .subscribe-form form {
   position: relative; }
