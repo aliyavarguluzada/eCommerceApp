@@ -1,4 +1,5 @@
 ﻿using eCommerceApp.DTOs.Sliders;
+using eCommerceApp.Enums;
 using eCommerceApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace eCommerceApp.Controllers
         {
             var sliders = await _context
                 .Sliders
+                .Where(c => c.SliderStatusId == (int)SliderStatus.Active)
                 .Select(c => new SliderHomeIndexDto
                 {
                     Title = c.Title,
