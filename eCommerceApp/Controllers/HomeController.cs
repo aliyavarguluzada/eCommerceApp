@@ -1,6 +1,7 @@
 ﻿using eCommerceApp.DTOs.BannerAds;
 using eCommerceApp.DTOs.Sliders;
 using eCommerceApp.Enums;
+using eCommerceApp.Migrations;
 using eCommerceApp.Models;
 using eCommerceApp.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
@@ -34,12 +35,18 @@ namespace eCommerceApp.Controllers
                 })
                 .ToListAsync();
 
-            var bannerAds = await _context.BannerAds.Select(c => new BannerHomeIndexDto
+
+            var take = Convert.ToInt32(_configuration["Lists:BannerAds"]);
+
+            var bannerAds = await _context
+                .BannerAds
+                .Where(c => c.BannerStatusId == (int)BannerStatus.Active)
+                .Select(c => new BannerHomeIndexDto
             {
                 BannerId = c.Id,
                 CategoryId = c.CategoryId,
                 Image = _configuration["Files:BannerAds"] + c.Image
-            }).ToListAsync();
+            }).Take(take).ToListAsync();
 
             var vm = new HomeIndexVm();
 
