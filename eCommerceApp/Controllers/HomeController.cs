@@ -2,6 +2,7 @@
 using eCommerceApp.DTOs.Sliders;
 using eCommerceApp.Enums;
 using eCommerceApp.Models;
+using eCommerceApp.ViewModels.Home;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -38,10 +39,16 @@ namespace eCommerceApp.Controllers
                 BannerId = c.Id,
                 CategoryId = c.CategoryId,
                 Image = _configuration["Files:BannerAds"] + c.Image
-            }).ToList();
+            }).ToListAsync();
+
+            var vm = new HomeIndexVm();
+
+            vm.BannerAds = bannerAds;
+            vm.Sliders = sliders;
 
 
-            return View(sliders);
+
+            return View(vm);
         }
     }
 }
