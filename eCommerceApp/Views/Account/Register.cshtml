@@ -26,14 +26,16 @@
                 <div class="basic-login">
                     <h3 class="text-center mb-60">Signup From Here</h3>
                     <form action="@Url.Action("Register","Account")" method="post">
-                        <label for="name">Username <span>**</span></label>
+                        <label for="@Model.Name">Username <span>**</span></label>
                         <input name="Name" id="name" type="text" placeholder="Enter Name..." /> 
-                        <label for="surname">Surname <span>**</span></label>
+                        <label for="@Model.Surname">Surname <span>**</span></label>
                         <input name="Surname" id="surname" type="text" placeholder="Enter Surname..." />
                         <label for="email-id">Email Address <span>**</span></label>
-                        <input name="Email" id="email-id" type="text" placeholder="Enter Email... " />
+                        <input name="@Model.Email" id="email-id" type="text" placeholder="Enter Email... " />
                         <label for="pass">Password <span>**</span></label>
-                        <input name="Password" id="pass" type="password" placeholder="Enter password..." />
+                        <input name="@Model.Password" id="pass" type="password" placeholder="Enter password..." /> 
+                        <label for="confirmpass">ConfirmPassword <span>**</span></label>
+                        <input name="@Model.ConfirmPassword" id="pass" type="password" placeholder="Confirm password..." />
                         <div class="mt-10"></div>
                         <button type="submit" class="btn theme-btn-2 w-100">Register Now</button>
                         <div class="or-divide"><span>or</span></div>
