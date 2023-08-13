@@ -25,6 +25,7 @@
             <div class="col-lg-8 offset-lg-2">
                 <div class="basic-login">
                     <h3 class="text-center mb-60">Signup From Here</h3>
+                    @Html.ValidationSummary(true);
                     <form action="@Url.Action("Register","Account")" method="post">
                         <label for="@Model.Name">Username <span>**</span></label>
                         <input name="Name" id="name" type="text" placeholder="Enter Name..." /> 
