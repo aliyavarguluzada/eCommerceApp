@@ -29,7 +29,7 @@ namespace eCommerceApp.Controllers
         {
             var user = await _context.Users.Where(c => c.Email == request.Email).FirstOrDefaultAsync();
 
-            if(user is null)
+            if (user is null)
             {
                 ModelState.AddModelError("", "Bele bir istifadeci yoxdu");
                 return View(request);
@@ -42,12 +42,12 @@ namespace eCommerceApp.Controllers
 
                 if (!user.Password.SequenceEqual(hash))
                 {
-                    ModelState.AddModelError("","Passwords do not match");
-                    return RedirectToAction("Index","Home");
+                    ModelState.AddModelError("", "Passwords do not match");
+                    return RedirectToAction("Index", "Home");
                 }
             }
 
-                return View();
+            return View();
         }
 
         [HttpGet]
@@ -59,7 +59,22 @@ namespace eCommerceApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Register(RegisterModel request)
         {
-            var User = new User()
+            if (!ModelState.IsValid)
+            {
+                return View(request);
+            }
+
+            var user = await _context.Users.Where(c => c.Email == request.Email).FirstOrDefaultAsync();
+
+
+            if(user is not null)
+            {
+                ModelState.AddModelError("","This email already exists");
+                return View(request);
+            }
+
+
+            user = new User()
             {
                 Name = request.Name,
                 Surname = request.Surname,
@@ -74,11 +89,11 @@ namespace eCommerceApp.Controllers
                 var buffer = Encoding.UTF8.GetBytes(request.Password);
                 var hash = sha256.ComputeHash(buffer);
 
-                User.Password = hash;
+                user.Password = hash;
             }
             await _context.AddAsync(User);
             await _context.SaveChangesAsync();
-                return RedirectToAction("Login","Account");
+            return RedirectToAction("Login", "Account");
         }
     }
 
