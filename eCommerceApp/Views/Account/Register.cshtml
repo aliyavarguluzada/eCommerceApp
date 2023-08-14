@@ -25,18 +25,28 @@
             <div class="col-lg-8 offset-lg-2">
                 <div class="basic-login">
                     <h3 class="text-center mb-60">Signup From Here</h3>
-                    @Html.ValidationSummary(true);
+                    @Html.ValidationSummary(true)
                     <form action="@Url.Action("Register","Account")" method="post">
-                        <label for="@Model.Name">Username <span>**</span></label>
-                        <input name="Name" id="name" type="text" placeholder="Enter Name..." /> 
-                        <label for="@Model.Surname">Surname <span>**</span></label>
-                        <input name="Surname" id="surname" type="text" placeholder="Enter Surname..." />
+                        @Html.ValidationMessageFor(c => c.Name)
+                        <label for="name">Username <span>**</span></label>
+                        <input value="@Model?.Name" name="Name" id="name" type="text" placeholder="Enter Name..." />
+                       
+                        @Html.ValidationMessageFor(c => c.Surname)
+                        <label for="surname">Surname <span>**</span></label>
+                        <input value="@Model?.Surname" name="Surname" id="surname" type="text" placeholder="Enter Surname..." />
+
+                        @Html.ValidationMessageFor(c => c.Email)
+
                         <label for="email-id">Email Address <span>**</span></label>
-                        <input name="@Model.Email" id="email-id" type="text" placeholder="Enter Email... " />
+                        <input value="@Model?.Email" name="Email" id="email-id" type="text" placeholder="Enter Email... " />
+
+                        @Html.ValidationMessageFor(c => c.Password)
                         <label for="pass">Password <span>**</span></label>
-                        <input name="@Model.Password" id="pass" type="password" placeholder="Enter password..." /> 
+                        <input name="password" name="password" id="pass" type="password" placeholder="Enter password..." />
+
+                        @Html.ValidationMessageFor(c => c.ConfirmPassword)
                         <label for="confirmpass">ConfirmPassword <span>**</span></label>
-                        <input name="@Model.ConfirmPassword" id="pass" type="password" placeholder="Confirm password..." />
+                        <input name="@Model?.ConfirmPassword" name="confimpass" id="pass" type="password" placeholder="Confirm password..." />
                         <div class="mt-10"></div>
                         <button type="submit" class="btn theme-btn-2 w-100">Register Now</button>
                         <div class="or-divide"><span>or</span></div>
