@@ -236,7 +236,7 @@
                                 }
                                 @if (Context.User.Identity.IsAuthenticated)
                                 {
-                                    <li class="login-btn"><a href="@Url.Action("Login","Account")"><i class="far fa-user"></i></a></li>
+                                    <li class="login-btn"><a href="@Url.Action("Login","Account")">@name?.Value @surname?.Value</i></a></li>
                                 }
                                 else
                                 {
