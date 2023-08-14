@@ -88,6 +88,14 @@ namespace eCommerceApp.Controllers
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> Register(RegisterModel request)
         {

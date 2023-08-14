@@ -230,13 +230,12 @@
                                     <a class="search-btn nav-search search-trigger" href="#"><i class="fas fa-search"></i></a>
                                 </li>
 
-                                @{
-                                    var name = Context.User.Claims.Where(c => c.Type == "Name").FirstOrDefault();
-                                    var surname = Context.User.Claims.Where(c => c.Type == "Surname").FirstOrDefault();
-                                }
                                 @if (Context.User.Identity.IsAuthenticated)
                                 {
-                                    <li class="login-btn"><a href="@Url.Action("Login","Account")">@name?.Value @surname?.Value</i></a></li>
+                                    var name = Context.User.Claims.Where(c => c.Type == "Name").FirstOrDefault();
+                                    var surname = Context.User.Claims.Where(c => c.Type == "Surname").FirstOrDefault();
+                                    <li class="login-btn"><a href="@Url.Action("Login","Account")">@name?.Value @surname?.Value</a></li>
+                                    <li><a href="@Url.Action("Logout","Account")">Sign Out</a></li>
                                 }
                                 else
                                 {
