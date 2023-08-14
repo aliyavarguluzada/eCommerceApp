@@ -27,6 +27,10 @@ namespace eCommerceApp.Controllers
         [HttpPost]
         public async Task<IActionResult> Login(LoginModel request)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(request);
+            }
             var user = await _context.Users.Where(c => c.Email == request.Email).FirstOrDefaultAsync();
 
             if (user is null)
@@ -81,6 +85,7 @@ namespace eCommerceApp.Controllers
                 Email = request.Email,
                 RegisterDte = DateTime.Now,
                 UserRoleId = (int)UserRoleEnum.User,
+                UserStatusId = (int)UserStatus.Active,
                 Created = DateTime.Now,
                 Updated = DateTime.Now
             };
