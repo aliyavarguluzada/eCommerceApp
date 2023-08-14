@@ -1,10 +1,13 @@
 ﻿using eCommerceApp.Enums;
 using eCommerceApp.Models;
 using eCommerceApp.ViewModels.Account;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Identity.Client;
+using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -21,6 +24,10 @@ namespace eCommerceApp.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
@@ -31,13 +38,34 @@ namespace eCommerceApp.Controllers
             {
                 return View(request);
             }
-            var user = await _context.Users.Where(c => c.Email == request.Email).FirstOrDefaultAsync();
+            var user = await _context.Users
+                .Include(c => c.UserRole)
+                .Where(c => c.Email == request.Email)
+                .FirstOrDefaultAsync();
 
             if (user is null)
             {
                 ModelState.AddModelError("", "Bele bir istifadeci yoxdu");
                 return View(request);
             }
+
+            var claims = new List<Claim>
+        {
+            new Claim("Email", user.Email),
+            new Claim("Name", user.Name),
+            new Claim("Role", user.UserRole.Name),
+            new Claim("RoleId", user.UserRoleId.ToString()),
+            new Claim("Id", user.Id.ToString())
+
+        };
+
+            var claimsIdentity = new ClaimsIdentity(
+                claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            await HttpContext.SignInAsync(
+           CookieAuthenticationDefaults.AuthenticationScheme,
+           new ClaimsPrincipal(claimsIdentity));
+
 
             using (SHA256 sha256 = SHA256.Create())
             {
@@ -71,9 +99,9 @@ namespace eCommerceApp.Controllers
             var user = await _context.Users.Where(c => c.Email == request.Email).FirstOrDefaultAsync();
 
 
-            if(user is not null)
+            if (user is not null)
             {
-                ModelState.AddModelError("","This email already exists");
+                ModelState.AddModelError("", "This email already exists");
                 return View(request);
             }
 
