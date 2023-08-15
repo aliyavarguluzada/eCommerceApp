@@ -114,7 +114,7 @@ namespace eCommerceApp.Controllers
             }
 
 
-            user = new User()
+            user = new  User()
             {
                 Name = request.Name,
                 Surname = request.Surname,
@@ -132,7 +132,7 @@ namespace eCommerceApp.Controllers
 
                 user.Password = hash;
             }
-            await _context.AddAsync(User);
+            await _context.AddAsync(user);
             await _context.SaveChangesAsync();
             return RedirectToAction("Login", "Account");
         }

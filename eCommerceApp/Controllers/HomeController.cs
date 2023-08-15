@@ -1,4 +1,5 @@
 ﻿using eCommerceApp.DTOs.BannerAds;
+using eCommerceApp.DTOs.Products;
 using eCommerceApp.DTOs.Sliders;
 using eCommerceApp.Enums;
 using eCommerceApp.Migrations;
@@ -43,11 +44,30 @@ namespace eCommerceApp.Controllers
                 .Where(c => c.BannerStatusId == (int)BannerStatus.Active)
                 .OrderByDescending(c => c.Id)
                 .Select(c => new BannerHomeIndexDto
+                {
+                    BannerId = c.Id,
+                    CategoryId = c.CategoryId,
+                    Image = _configuration["Files:BannerAds"] + c.Image
+                }).Take(take).ToListAsync();
+
+
+
+            var categories = await _context.Categories.ToListAsync();
+            var products = new List<ProductDto>();
+
+
+            foreach (var category in categories)
             {
-                BannerId = c.Id,
-                CategoryId = c.CategoryId,
-                Image = _configuration["Files:BannerAds"] + c.Image
-            }).Take(take).ToListAsync();
+                var categoryProducts = await _context
+                    .Products
+                    .Where(c => c.CategoryId == category.Id && c.ProductStatusId == (int)ProductStatus.Active)
+                    .Take(10)
+                    .Select(c => new ProductDto { })
+                    .ToListAsync();
+
+                products.AddRange(categoryProducts);
+
+            }
 
             var vm = new HomeIndexVm();
 
