@@ -1,4 +1,5 @@
 ﻿using eCommerceApp.DTOs.BannerAds;
+using eCommerceApp.DTOs.Categories;
 using eCommerceApp.DTOs.Products;
 using eCommerceApp.DTOs.Sliders;
 using eCommerceApp.Enums;
@@ -52,7 +53,20 @@ namespace eCommerceApp.Controllers
 
 
 
-            var categories = await _context.Categories.ToListAsync();
+            var categories = await _context
+                .Categories
+                .Include(c => c.Products)
+                .Select(c => new CategoryHomeIndexDto 
+                {
+                    CategoryId = c.Id,
+                    Name = c.Name,
+                    Products = c.Products
+                    .Where(c =>c.ProductStatusId == (int)ProductStatus.Home)
+                    .Select(c => new ProductDto)
+                    .ToList()
+                     
+                })
+                .ToListAsync();
             var products = new List<ProductDto>();
 
 
@@ -60,7 +74,7 @@ namespace eCommerceApp.Controllers
             {
                 var categoryProducts = await _context
                     .Products
-                    .Where(c => c.CategoryId == category.Id && c.ProductStatusId == (int)ProductStatus.Active)
+                    .Where(c => c.CategoryId == category.CategoryId && c.ProductStatusId == (int)ProductStatus.Active)
                     .Take(10)
                     .Select(c => new ProductDto { })
                     .ToListAsync();
@@ -73,7 +87,9 @@ namespace eCommerceApp.Controllers
 
             vm.BannerAds = bannerAds;
             vm.Sliders = sliders;
-
+            vm.Categories = categories;
+            vm.Products = products;
+ 
 
 
             return View(vm);
