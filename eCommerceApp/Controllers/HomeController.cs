@@ -56,40 +56,50 @@ namespace eCommerceApp.Controllers
             var categories = await _context
                 .Categories
                 .Include(c => c.Products)
-                .Select(c => new CategoryHomeIndexDto 
+                .Select(c => new CategoryHomeIndexDto
                 {
                     CategoryId = c.Id,
                     Name = c.Name,
                     Products = c.Products
-                    .Where(c =>c.ProductStatusId == (int)ProductStatus.Home)
-                    .Select(c => new ProductDto)
+                    .Where(a => a.ProductStatusId == (int)ProductStatus.Home)
+                    .Select(a => new ProductDto
+                    {
+                        Name = a.Name,
+                        Price = a.Price.ToString("#.##"),
+                        CategoryName = c.Name,
+                        ProductId = a.Id,
+                        AfterDiscountPrice = a.Discount == null ? null : (a.Price - (a.Price * a.Discount / 100)).ToString(),
+                        MainImage = _configuration["Files:Products"] + a.ProductPhotos.Where(b => b.IsMain == true).Select(b => b.Image).FirstOrDefault(),
+                        Images = a.ProductPhotos.Where(b => b.IsMain == false).Select(b => _configuration["Files:Products"] + b.Image).ToList()
+                    })
                     .ToList()
-                     
-                })
+
+                }) 
                 .ToListAsync();
-            var products = new List<ProductDto>();
+
+            //var products = new List<ProductDto>();
 
 
-            foreach (var category in categories)
-            {
-                var categoryProducts = await _context
-                    .Products
-                    .Where(c => c.CategoryId == category.CategoryId && c.ProductStatusId == (int)ProductStatus.Active)
-                    .Take(10)
-                    .Select(c => new ProductDto { })
-                    .ToListAsync();
+            //foreach (var category in categories)
+            //{
+            //    var categoryProducts = await _context
+            //        .Products
+            //        .Where(c => c.CategoryId == category.CategoryId && c.ProductStatusId == (int)ProductStatus.Active)
+            //        .Take(10)
+            //        .Select(c => new ProductDto { })
+            //        .ToListAsync();
 
-                products.AddRange(categoryProducts);
+            //    products.AddRange(categoryProducts);
 
-            }
+            //}
 
             var vm = new HomeIndexVm();
 
             vm.BannerAds = bannerAds;
             vm.Sliders = sliders;
             vm.Categories = categories;
-            vm.Products = products;
- 
+            //vm.Products = products;
+
 
 
             return View(vm);
