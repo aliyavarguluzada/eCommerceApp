@@ -22,7 +22,7 @@
                                 <div class="slide-content">
                                     <span data-animation="fadeInRight" data-delay=".2s">@slider.Title</span>
                                     <h1 data-animation="fadeInUp" data-delay=".5s">
-                                       @slider.Slogan
+                                        @slider.Slogan
                                     </h1>
                                     <div class="slide-btn">
                                         <a class="btn theme-btn" href="shop.html" data-animation="fadeInLeft" data-delay=".7s">shop now</a>
@@ -74,23 +74,24 @@
     <section class="banner-area pt-30 pl-15 pr-15">
         <div class="container-fluid">
             <div class="row">
-               @foreach(var bannerads in Model.BannerAds){
+                @foreach (var bannerads in Model.BannerAds)
+                {
                     <div class="col-lg-4 col-md-6">
-                    <div class="banner mb-30">
-                        <a href="shop.html"><img src="@bannerads.Image" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="banner mb-30">
+                        <div class="banner mb-30">
                             <a href="shop.html"><img src="@bannerads.Image" alt=""></a>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="banner mb-30">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="banner mb-30">
                             <a href="shop.html"><img src="@bannerads.Image" alt=""></a>
+                        </div>
                     </div>
-                </div>
-               }
+                    <div class="col-lg-4 col-md-6">
+                        <div class="banner mb-30">
+                            <a href="shop.html"><img src="@bannerads.Image" alt=""></a>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     </section>
@@ -108,10 +109,17 @@
                 <div class="col-xl-7 col-lg-12">
                     <div class="product-tab mb-40">
                         <ul class="nav product-nav  justify-content-xl-end" id="myTab1" role="tablist">
-                            <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
-                                   aria-selected="true">table lamp</a>
-                            </li>
+                            @{
+                                var counter = 0;
+                            }
+                            @foreach (var category in Model.Categories)
+                            {
+
+                                <li class="nav-item">
+                                    <a class="nav-link @(counter == 0 ? "active" : "")" id="@category.Name-tab" data-toggle="tab" href="#@category.Name" role="tab" aria-controls="@category.Name"
+                                       aria-selected="true">table lamp</a>
+                                </li>
+                            }
                             <li class="nav-item">
                                 <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
                                    aria-selected="false">furniture</a>
