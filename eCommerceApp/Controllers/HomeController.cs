@@ -23,19 +23,19 @@ namespace eCommerceApp.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var sliders = await _context
-                .Sliders
-                .Where(c => c.SliderStatusId == (int)SliderStatus.Active)
-                .Select(c => new SliderHomeIndexDto
-                {
-                    Title = c.Title,
-                    Slogan = c.Slogan,
-                    BackgroundImage = _configuration["Files:Sliders"] + c.BackgroundImage,
-                    BottomImage = _configuration["Files:Sliders"] + c.BottomImage,
-                    TopImage = _configuration["Files:Sliders"] + c.TopImage,
-                    CategoryId = c.CategoryId,
-                })
-                .ToListAsync();
+            //var sliders = await _context
+            //    .Sliders
+            //    .Where(c => c.SliderStatusId == (int)SliderStatus.Active)
+            //    .Select(c => new SliderHomeIndexDto
+            //    {
+            //        Title = c.Title,
+            //        Slogan = c.Slogan,
+            //        BackgroundImage = _configuration["Files:Sliders"] + c.BackgroundImage,
+            //        BottomImage = _configuration["Files:Sliders"] + c.BottomImage,
+            //        TopImage = _configuration["Files:Sliders"] + c.TopImage,
+            //        CategoryId = c.CategoryId,
+            //    })
+            //    .ToListAsync();
 
 
             var take = Convert.ToInt32(_configuration["Lists:BannerAds"]);
@@ -74,7 +74,7 @@ namespace eCommerceApp.Controllers
                     })
                     .ToList()
 
-                }) 
+                })
                 .ToListAsync();
 
             //var products = new List<ProductDto>();
@@ -93,10 +93,11 @@ namespace eCommerceApp.Controllers
 
             //}
 
+            ViewBag.Categories = categories;
             var vm = new HomeIndexVm();
 
             vm.BannerAds = bannerAds;
-            vm.Sliders = sliders;
+            //vm.Sliders = sliders;
             vm.Categories = categories;
             //vm.Products = products;
 
