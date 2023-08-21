@@ -9,7 +9,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace EcommerceApp.MVC.Areas.Admin.Controllers
+namespace eCommerceApp.Areas.Admin.Controllers
 {
     [Area("admin")]
     public class AccountController : Controller

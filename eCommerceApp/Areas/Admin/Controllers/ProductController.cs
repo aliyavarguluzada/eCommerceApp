@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace EcommerceApp.MVC.Areas.Admin.Controllers
+namespace eCommerceApp.Areas.Admin.Controllers
 {
     [Area("admin")]
     [MyAuth("Admin")]
