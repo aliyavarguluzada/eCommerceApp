@@ -21,7 +21,7 @@ namespace eCommerceApp.Controllers
             _context = context;
             _configuration = configuration;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index()    
         {
             //var sliders = await _context
             //    .Sliders

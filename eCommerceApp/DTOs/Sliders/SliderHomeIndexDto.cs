@@ -1,4 +1,4 @@
-﻿namespace eCommerceApp.DTOs.Sliders
+﻿    namespace eCommerceApp.DTOs.Sliders
 {
     public class SliderHomeIndexDto
     {

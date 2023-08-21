@@ -3,7 +3,6 @@ using eCommerceApp.Enums;
 using eCommerceApp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
 
 namespace eCommerceApp.Components
 {
@@ -36,7 +35,7 @@ namespace eCommerceApp.Components
                .ToListAsync();
 
 
-            return View();
+            return View(sliders);
         }
     }
 }
