@@ -6,12 +6,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eCommerceApp.Components
 {
-    public class BannerViewComponents : ViewComponent
+    public class BannerViewComponent : ViewComponent
     {
         private readonly ApplicationDbContext _context;
         private readonly IConfiguration _configuration;
 
-        public BannerViewComponents(ApplicationDbContext context, IConfiguration configuration)
+        public BannerViewComponent(ApplicationDbContext context, IConfiguration configuration)
         {
             _context = context;
             _configuration = configuration;

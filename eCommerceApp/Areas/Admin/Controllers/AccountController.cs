@@ -1,4 +1,5 @@
 ﻿using eCommerceApp.Enums;
+using eCommerceApp.Filters;
 using eCommerceApp.Models;
 using eCommerceApp.ViewModels.Account;
 using Microsoft.AspNetCore.Authentication;
@@ -11,7 +12,8 @@ using System.Text;
 
 namespace eCommerceApp.Areas.Admin.Controllers
 {
-    [Area("admin")]
+    [Area("admin")] 
+    [MyAuth("Admin")]
     public class AccountController : Controller
     {
 

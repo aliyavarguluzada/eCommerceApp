@@ -19,9 +19,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\uploads\bannerAds\" />
-    <Folder Include="wwwroot\uploads\products\" />
-  </ItemGroup>
-
 </Project>

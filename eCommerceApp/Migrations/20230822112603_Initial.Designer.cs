@@ -12,8 +12,8 @@ using eCommerceApp.Models;
 namespace eCommerceApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230811103112_BannerAds")]
-    partial class BannerAds
+    [Migration("20230822112603_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,6 +64,9 @@ namespace eCommerceApp.Migrations
                     b.Property<int>("BannerStatusId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("CategoryId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime2");
 
@@ -78,6 +81,8 @@ namespace eCommerceApp.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("BannerAds");
                 });
@@ -117,8 +122,9 @@ namespace eCommerceApp.Migrations
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("Name")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Updated")
                         .HasColumnType("datetime");
@@ -593,6 +599,15 @@ namespace eCommerceApp.Migrations
                         .HasConstraintName("Avenues_fk0");
 
                     b.Navigation("Region");
+                });
+
+            modelBuilder.Entity("eCommerceApp.Models.BannerAd", b =>
+                {
+                    b.HasOne("eCommerceApp.Models.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId");
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("eCommerceApp.Models.Product", b =>

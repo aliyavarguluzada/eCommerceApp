@@ -16,18 +16,19 @@ namespace eCommerceApp.Filters
 
             if (!isAuthenticated)
             {
-                context.Result = new UnauthorizedResult();
+                context.Result = new RedirectToActionResult("Login", "Account", new { area = "Admin" });
+                return;
             }
             var roleClaim = context.HttpContext.User.Claims.Where(c => c.Type == "Role").FirstOrDefault();
             if (roleClaim is null)
             {
-                context.Result = new UnauthorizedResult();
-
+                context.Result = new RedirectToActionResult("Login", "Account", new { area = "Admin" });
+                return;
             }
             if (roleClaim.Value != Role)
             {
-                context.Result = new UnauthorizedResult();
-
+                context.Result = new RedirectToActionResult("Login", "Account", new { area = "Admin" });
+                return;
             }
 
         }

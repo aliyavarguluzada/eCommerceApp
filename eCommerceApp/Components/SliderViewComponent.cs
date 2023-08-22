@@ -1,4 +1,4 @@
-﻿using eCommerceApp.DTOs.Sliders;
+﻿ using eCommerceApp.DTOs.Sliders;
 using eCommerceApp.Enums;
 using eCommerceApp.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eCommerceApp.Components
 {
-    public class SliderViewComponents : ViewComponent
+    public class SliderViewComponent : ViewComponent
     {
         private readonly ApplicationDbContext _context;
         private readonly IConfiguration _configuration;
-        public SliderViewComponents(ApplicationDbContext context, IConfiguration configuration)
+        public SliderViewComponent(ApplicationDbContext context, IConfiguration configuration)
         {
             _context = context;
             _configuration = configuration;

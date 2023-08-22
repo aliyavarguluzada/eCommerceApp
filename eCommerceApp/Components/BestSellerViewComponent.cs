@@ -44,6 +44,7 @@ namespace eCommerceApp.Components
 
                 })
                 .ToListAsync();
+            
 
             return View(categories);
         }

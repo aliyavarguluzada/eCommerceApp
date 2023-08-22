@@ -1,13 +1,5 @@
-﻿using eCommerceApp.DTOs.BannerAds;
-using eCommerceApp.DTOs.Categories;
-using eCommerceApp.DTOs.Products;
-using eCommerceApp.DTOs.Sliders;
-using eCommerceApp.Enums;
-using eCommerceApp.Migrations;
-using eCommerceApp.Models;
-using eCommerceApp.ViewModels.Home;
+﻿using eCommerceApp.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace eCommerceApp.Controllers
 {
