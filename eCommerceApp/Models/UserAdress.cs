@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace eCommerceApp.Models;
 
-public partial class UserAdress
+public  class UserAdress
 {
     public int Id { get; set; }
 
     public int UserId { get; set; }
 
-    public string Addres { get; set; } = null!;
+    public string Addres { get; set; }
 
     public int CityId { get; set; }
 
@@ -25,7 +25,7 @@ public partial class UserAdress
 
     public DateTime? Updated { get; set; }
 
-    public virtual Avenue Avenue { get; set; } = null!;
+    public virtual Avenue Avenue { get; set; }
 
-    public virtual User User { get; set; } = null!;
+    public virtual User User { get; set; }
 }

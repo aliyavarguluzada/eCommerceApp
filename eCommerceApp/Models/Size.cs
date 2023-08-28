@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace eCommerceApp.Models;
 
-namespace eCommerceApp.Models;
-
-public partial class Size
+public  class Size
 {
     public int Id { get; set; }
 
-    public int Name { get; set; }
+    public string Name { get; set; }
 
     public DateTime? Created { get; set; }
 

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace eCommerceApp.Models;
 
-public partial class Brand
+public class Brand
 {
     public int Id { get; set; }
 
-    public string Name { get; set; } = null!;
+    public string Name { get; set; }
 
     public int BrandStatusId { get; set; }
 

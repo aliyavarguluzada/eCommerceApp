@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace eCommerceApp.Models;
 
-namespace eCommerceApp.Models;
-
-public partial class ProductPhoto
+public  class ProductPhoto
 {
     public int Id { get; set; }
 
     public int ProductId { get; set; }
 
-    public string Image { get; set; } = null!;
+    public string Image { get; set; }
 
     public bool IsMain { get; set; }
 
@@ -17,5 +14,5 @@ public partial class ProductPhoto
 
     public DateTime? Updated { get; set; }
 
-    public virtual Product Product { get; set; } = null!;
+    public virtual Product Product { get; set; }
 }

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace eCommerceApp.Models;
 
-namespace eCommerceApp.Models;
-
-public partial class Avenue
+public class Avenue
 {
     public int Id { get; set; }
 
-    public string Name { get; set; } = null!;
+    public string Name { get; set; }
 
     public int RegionId { get; set; }
 
@@ -15,7 +12,7 @@ public partial class Avenue
 
     public DateTime? Updated { get; set; }
 
-    public virtual Region Region { get; set; } = null!;
+    public virtual Region Region { get; set; }
 
     public virtual ICollection<UserAdress> UserAdresses { get; set; } = new List<UserAdress>();
 }

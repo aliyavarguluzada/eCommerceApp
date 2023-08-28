@@ -12,7 +12,7 @@ using eCommerceApp.Models;
 namespace eCommerceApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230822112603_Initial")]
+    [Migration("20230828085327_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -167,8 +167,9 @@ namespace eCommerceApp.Migrations
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("Name")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Updated")
                         .HasColumnType("datetime");
@@ -413,8 +414,9 @@ namespace eCommerceApp.Migrations
                     b.Property<DateTime?>("Created")
                         .HasColumnType("datetime");
 
-                    b.Property<int>("Name")
-                        .HasColumnType("int");
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Updated")
                         .HasColumnType("datetime");

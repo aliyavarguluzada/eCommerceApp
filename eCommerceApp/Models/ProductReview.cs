@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace eCommerceApp.Models;
 
-namespace eCommerceApp.Models;
-
-public partial class ProductReview
+public  class ProductReview
 {
     public int Id { get; set; }
 
@@ -11,7 +8,7 @@ public partial class ProductReview
 
     public int UserId { get; set; }
 
-    public string Review { get; set; } = null!;
+    public string Review { get; set; }
 
     public DateTime ReviewDate { get; set; }
 
@@ -23,7 +20,7 @@ public partial class ProductReview
 
     public DateTime Updated { get; set; }
 
-    public virtual Product Product { get; set; } = null!;
+    public virtual Product Product { get; set; }
 
-    public virtual User User { get; set; } = null!;
+    public virtual User User { get; set; }
 }

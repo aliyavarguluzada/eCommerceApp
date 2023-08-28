@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace eCommerceApp.Models;
 
-public partial class ProductColor
+public  class ProductColor
 {
     public int Id { get; set; }
 
@@ -15,7 +15,7 @@ public partial class ProductColor
 
     public DateTime? Updated { get; set; }
 
-    public virtual Color Color { get; set; } = null!;
+    public virtual Color Color { get; set; }
 
-    public virtual Product Product { get; set; } = null!;
+    public virtual Product Product { get; set; }
 }

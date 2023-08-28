@@ -3,21 +3,21 @@ using System.Collections.Generic;
 
 namespace eCommerceApp.Models;
 
-public partial class User
+public  class User
 {
     public int Id { get; set; }
 
-    public string Name { get; set; } = null!;
+    public string Name { get; set; }
 
-    public string Surname { get; set; } = null!;
+    public string Surname { get; set; }
 
-    public string Email { get; set; } = null!;
+    public string Email { get; set; }
 
     public string? Phone { get; set; }
 
     public int UserRoleId { get; set; }
 
-    public byte[] Password { get; set; } = null!;
+    public byte[] Password { get; set; }
 
     public int UserStatusId { get; set; }
 
@@ -31,5 +31,5 @@ public partial class User
 
     public virtual ICollection<UserAdress> UserAdresses { get; set; } = new List<UserAdress>();
 
-    public virtual UserRole UserRole { get; set; } = null!;
+    public virtual UserRole UserRole { get; set; }
 }

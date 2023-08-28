@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿namespace eCommerceApp.Models;
 
-namespace eCommerceApp.Models;
-
-public partial class ProductSize
+public  class ProductSize
 {
     public int Id { get; set; }
 
@@ -15,7 +12,7 @@ public partial class ProductSize
 
     public DateTime Updated { get; set; }
 
-    public virtual Product Product { get; set; } = null!;
+    public virtual Product Product { get; set; }
 
-    public virtual Size Size { get; set; } = null!;
+    public virtual Size Size { get; set; }
 }

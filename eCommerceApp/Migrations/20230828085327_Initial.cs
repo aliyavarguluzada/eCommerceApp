@@ -16,7 +16,7 @@ namespace eCommerceApp.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 1, nullable: false),
                     BrandStatusId = table.Column<int>(type: "int", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime", nullable: true),
                     Updated = table.Column<DateTime>(type: "datetime", nullable: true)
@@ -59,7 +59,7 @@ namespace eCommerceApp.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime", nullable: true),
                     Updated = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
@@ -73,7 +73,7 @@ namespace eCommerceApp.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime", nullable: true),
                     Updated = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
@@ -87,7 +87,7 @@ namespace eCommerceApp.Migrations
                 columns: table => new
                 {
                     id = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 1, nullable: false),
                     Created = table.Column<DateTime>(type: "datetime", nullable: true),
                     Updated = table.Column<DateTime>(type: "datetime", nullable: true)
                 },
@@ -135,7 +135,7 @@ namespace eCommerceApp.Migrations
                     ProductCode = table.Column<string>(type: "nvarchar(10)", maxLength: 10, nullable: false),
                     HasStock = table.Column<bool>(type: "bit", nullable: false),
                     StockCount = table.Column<int>(type: "int", nullable: false),
-                    Description = table.Column<string>(type: "text", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", nullable: false),
                     ProductStatusId = table.Column<int>(type: "int", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime", nullable: true),
                     Updated = table.Column<DateTime>(type: "datetime", nullable: false)
@@ -257,7 +257,7 @@ namespace eCommerceApp.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
-                    Image = table.Column<string>(type: "text", nullable: false),
+                    Image = table.Column<string>(type: "nvarchar(500)", nullable: false),
                     IsMain = table.Column<bool>(type: "bit", nullable: false),
                     Created = table.Column<DateTime>(type: "datetime", nullable: true),
                     Updated = table.Column<DateTime>(type: "datetime", nullable: true)
@@ -324,7 +324,7 @@ namespace eCommerceApp.Migrations
                     id = table.Column<int>(type: "int", nullable: false),
                     ProductId = table.Column<int>(type: "int", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: false),
-                    Review = table.Column<string>(type: "text", nullable: false),
+                    Review = table.Column<string>(type: "nvarchar(500)", nullable: false),
                     ReviewDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     ProductReviewsStatusId = table.Column<int>(type: "int", nullable: false),
                     Rate = table.Column<int>(type: "int", nullable: false),
