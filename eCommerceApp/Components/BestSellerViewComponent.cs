@@ -19,7 +19,7 @@ namespace eCommerceApp.Components
         }
 
         public async Task<IViewComponentResult> InvokeAsync()
-        {
+         {
 
             var categories = await _context
                 .Categories

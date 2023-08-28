@@ -56,13 +56,13 @@ public partial class ApplicationDbContext : DbContext
             entity.Property(x => x.Title).IsRequired();
 
             entity.Property(x => x.Slogan).IsRequired();
-            
+
             entity.Property(x => x.CategoryId).IsRequired();
-            
+
             entity.Property(x => x.BackgroundImage).IsRequired();
             entity.Property(x => x.SliderStatusId).HasDefaultValue(10);
 
-                
+
 
         });
 
@@ -186,7 +186,7 @@ public partial class ApplicationDbContext : DbContext
                 .ValueGeneratedNever()
                 .HasColumnName("id");
             entity.Property(e => e.Created).HasColumnType("datetime");
-            entity.Property(e => e.Image).HasColumnType("text");
+
             entity.Property(e => e.Updated).HasColumnType("datetime");
 
             entity.HasOne(d => d.Product).WithMany(p => p.ProductPhotos)
